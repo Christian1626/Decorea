@@ -1,0 +1,10 @@
+﻿test|un test
+Loading|Loading
+MainMenu|Main Menu
+Config|Configuration
+Info|About
+Action|Action !
+InfoAbout|(c) 2014 - Your Business
+InfoVersion|Application Version: 
+ButtonBack|Back
+LabelConfiguration|Application Configuration
