@@ -1,40 +1,51 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 
 public class UIMenuManager : MonoBehaviour 
 {
 	#region Fields
+	[SerializeField]
+	public GameObject goAction;
+	
+	[SerializeField]
+	public GameObject goConfig;
+	
+	[SerializeField]
+	public GameObject goInfo;
+
 	ApplicationManager applicationManager;
 	Rect windowRect = new Rect(250, 310, 290, 120);
-	string labelConfig;
-	string labelInfo;
-	string labelAction;
-	string labelMainMenu;
+	//string labelAction;
+	Text labelAction;
+	Text labelInfo;
+	Text labelConfig;
 	#endregion
 	
 	#region Methods
 	
 	void Start()
 	{
-		Debug.Log ("Start");
 		this.applicationManager = GameObject.Find("ApplicationManager").GetComponent<ApplicationManager>();
-		Debug.Log (applicationManager);
-		this.labelMainMenu = this.labelConfig = this.labelAction = string.Empty;
-		
-		this.labelMainMenu =  (applicationManager.LocalMessage.Messages.TryGetValue("MainMenu", out labelMainMenu)) ? labelMainMenu: string.Empty;
-		this.labelConfig =  (applicationManager.LocalMessage.Messages.TryGetValue("Config", out labelConfig)) ? labelConfig: string.Empty;
-		this.labelInfo =  (applicationManager.LocalMessage.Messages.TryGetValue("Info", out labelInfo)) ? labelInfo: string.Empty;
-		this.labelAction =  (applicationManager.LocalMessage.Messages.TryGetValue("Action", out labelAction)) ? labelAction: string.Empty;
+
+		Text labelAction = goAction.GetComponent<Text>();
+		Text labelInfo = goInfo.GetComponent<Text>(); 
+		Text labelConfig = goConfig.GetComponent<Text>(); 
+
+		//Attribut des noms au menu selon la langues
+		string labelActionValue;
+		string labelInfoValue;
+		string labelConfigValue;
+
+		labelAction.text =  (applicationManager.LocalMessage.Messages.TryGetValue("Action", out labelActionValue)) ? labelActionValue: string.Empty;
+		labelConfig.text =  (applicationManager.LocalMessage.Messages.TryGetValue("Config", out labelConfigValue)) ? labelConfigValue: string.Empty;
+		labelInfo.text =  (applicationManager.LocalMessage.Messages.TryGetValue("Info", out labelInfoValue)) ? labelInfoValue: string.Empty;
 		
 	}
 	
-	/*void OnGUI() 
-	{
-		GUI.Label(new Rect(0,0,200,30),labelInfo);	
-		windowRect = GUI.Window(0,windowRect , WindowAction, labelMainMenu);
-	}
-	
+
+	/*
 	void WindowAction(int windowID) 
 	{
 		if (GUI.Button (new Rect (Screen.width/2, Screen.height/2, 100, 40), this.labelConfig)) 

@@ -4,7 +4,7 @@ MainMenu|Menu Principal
 Config|Configuration
 Info|Informations
 Action|Action
-InfoAbout|(c)2014 - Votre Entreprise
-InfoVersion|Version de l'application : 
+InfoAbout|LEROY Christian
+InfoVersion| Version:
 ButtonBack|Retour Menu
 LabelConfiguration|Configuration de l'application

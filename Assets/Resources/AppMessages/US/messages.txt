@@ -4,7 +4,7 @@ MainMenu|Main Menu
 Config|Configuration
 Info|About
 Action|Action !
-InfoAbout|(c) 2014 - Your Business
-InfoVersion|Application Version: 
+InfoAbout| LEROY Christian
+InfoVersion| Version: 
 ButtonBack|Back
 LabelConfiguration|Application Configuration

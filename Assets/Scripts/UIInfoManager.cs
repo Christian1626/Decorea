@@ -1,15 +1,26 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class UIInfoManager : MonoBehaviour 
 {
 	#region Fields
+	[SerializeField]
+	public GameObject goInfo;
+	
+	[SerializeField]
+	public GameObject goVersion;
+
+	[SerializeField]
+	public GameObject goButtonMenu;
+
 	ApplicationManager applicationManager;
 	string labelInfoValue;
 	string labelVersionValue;
 	string labelButtonMenuValue;
-	GUIText labelVersion;
-	GameObject labelInfo;
+	Text labelButtonMenu;
+	Text labelInfo;
+	Text labelVersion;
 	#endregion
 	
 	#region Methods
@@ -17,24 +28,24 @@ public class UIInfoManager : MonoBehaviour
 	{
 		//Récupère les gameobjects
 		this.applicationManager = GameObject.Find("ApplicationManager").GetComponent<ApplicationManager>();
-		this.labelVersion = GameObject.Find ("LabelVersion").GetComponent<GUIText> ();
-		//this.labelInfo = GameObject.Find ("LabelInfo").GetComponent<GUIText> ();
-		this.labelInfo = GameObject.Find ("LabelInfo").GetComponent<GameObject> ();
-		
+		this.labelInfo = goInfo.GetComponent<Text>();
+		this.labelVersion = goVersion.GetComponent<Text>(); 
+		this.labelButtonMenu = goButtonMenu.GetComponent<Text>(); 
 		DefineLabels ();
 	}
 	
 	void DefineLabels()
 	{
-		//version
 		this.labelVersionValue = (applicationManager.LocalMessage.Messages.TryGetValue("InfoVersion", out  labelVersionValue)) ?   labelVersionValue : string.Empty;
 		this.labelVersion.text = string.Concat(this.labelVersionValue , this.applicationManager.Version);
 
-		//info
-		this.labelInfoValue = string.Empty;
-		//GameObject.Find("Canvas").transform.Find("LabelInfo").GetComponent<GUIText>().text = (applicationManager.LocalMessage.Messages.TryGetValue("InfoAbout", out  labelInfoValue)) ?   labelInfoValue : string.Empty;
+		Debug.Log ("Version:"+this.applicationManager.Version);
+		/*this.labelVersion.text = (applicationManager.LocalMessage.Messages.TryGetValue("InfoVersion", out  labelVersionValue)) ?   labelVersionValue : string.Empty;
+		Debug.Log("Version: "+ labelVersionValue);
+		labelVersion.text = "44";*/
+		this.labelInfo.text = (applicationManager.LocalMessage.Messages.TryGetValue("InfoAbout", out  labelInfoValue)) ?   labelInfoValue : string.Empty;
 		
-		this.labelButtonMenuValue = (applicationManager.LocalMessage.Messages.TryGetValue("ButtonBack", out  labelButtonMenuValue)) ?   labelButtonMenuValue : string.Empty;
+		this.labelButtonMenu.text = (applicationManager.LocalMessage.Messages.TryGetValue("ButtonBack", out  labelButtonMenuValue)) ?   labelButtonMenuValue : string.Empty;
 	}
 
 	public void OnClickMainMenu() {
