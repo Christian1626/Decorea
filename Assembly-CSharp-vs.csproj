@@ -49,11 +49,15 @@
      <Compile Include="Assets\Scripts\ApplicationManager.cs" />
      <Compile Include="Assets\Scripts\CultureMessage.cs" />
      <Compile Include="Assets\Scripts\HelperRotate.cs" />
+     <Compile Include="Assets\Scripts\HelperRotate2.cs" />
      <Compile Include="Assets\Scripts\LangageManager.cs" />
      <Compile Include="Assets\Scripts\Loader.cs" />
      <Compile Include="Assets\Scripts\Loading.cs" />
+     <Compile Include="Assets\Scripts\TriggerCollider.cs" />
+     <Compile Include="Assets\Scripts\TriggerCollider2.cs" />
      <Compile Include="Assets\Scripts\UIConfigurationManager.cs" />
      <Compile Include="Assets\Scripts\UIInfoManager.cs" />
+     <Compile Include="Assets\Scripts\UIMainSceneManager.cs" />
      <Compile Include="Assets\Scripts\UIMenuManager.cs" />
      <Compile Include="Assets\Vuforia\Scripts\BackgroundPlaneBehaviour.cs" />
      <Compile Include="Assets\Vuforia\Scripts\CloudRecoBehaviour.cs" />

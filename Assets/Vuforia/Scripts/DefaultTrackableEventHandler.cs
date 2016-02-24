@@ -17,6 +17,7 @@ namespace Vuforia
         #region PRIVATE_MEMBER_VARIABLES
  
         private TrackableBehaviour mTrackableBehaviour;
+		private ApplicationManager applicationManager;
     
         #endregion // PRIVATE_MEMBER_VARIABLES
 
@@ -26,6 +27,7 @@ namespace Vuforia
     
         void Start()
         {
+			this.applicationManager = GameObject.Find ("ApplicationManager").GetComponent<ApplicationManager> ();
             mTrackableBehaviour = GetComponent<TrackableBehaviour>();
             if (mTrackableBehaviour)
             {
@@ -83,6 +85,8 @@ namespace Vuforia
                 component.enabled = true;
             }
 
+			this.applicationManager.CurrentTrackableObject = mTrackableBehaviour.gameObject;
+
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
         }
 
@@ -96,15 +100,26 @@ namespace Vuforia
             foreach (Renderer component in rendererComponents)
             {
                 component.enabled = false;
+				/*if(component.GetComponent<Renderer>() != null) {
+					if(component.GetComponent<Renderer>().material.color != Color.gray) {
+						component.GetComponent<Renderer>().material.color = Color.gray;
+					}
+				}*/
             }
 
             // Disable colliders:
             foreach (Collider component in colliderComponents)
             {
+				//Debug.Log("name:" + component.transform.name);
+				//if(component.transform.name!="default")
                 component.enabled = false;
+
             }
 
-            Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
+			this.applicationManager.CurrentTrackableObject = null;
+
+
+            Debug.Log("Trackable test" + mTrackableBehaviour.TrackableName + " lost");
         }
 
         #endregion // PRIVATE_METHODS

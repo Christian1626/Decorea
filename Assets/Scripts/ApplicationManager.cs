@@ -14,9 +14,17 @@ public class ApplicationManager : MonoBehaviour {
 	private string version;
 
 	private string sceneToLoad;
+
+	[SerializeField]
+	private GameObject currentTrackableObject;
+
 	#endregion
 
 	#region Methods
+
+	void Start() {
+		Screen.orientation = ScreenOrientation.LandscapeLeft;
+	}
 	public string Version {
 		get { return this.version; }
 	}
@@ -48,6 +56,31 @@ public class ApplicationManager : MonoBehaviour {
 			PlayerPrefs.Save();
 		}
 	}
+
+	public GameObject CurrentTrackableObject 
+	{
+		get 
+		{
+			return currentTrackableObject;
+		}
+		set 
+		{
+			currentTrackableObject = value;
+		}
+	}
+
+	void Update() {
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			if(Application.loadedLevelName == "MainMenu") {
+				Application.Quit();
+			} else {
+				this.sceneToLoad = "MainMenu";
+				Application.LoadLevel("Loading");
+			}
+		}
+		                                     
+	}
+
 	void Awake() {
 		Debug.Log ("ApplicationManager Awake()");
 		DontDestroyOnLoad (transform.gameObject);
